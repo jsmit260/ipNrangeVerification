@@ -5,7 +5,7 @@ import sys
 '''
 USE ADVICE AT YOUR OWN RISK, I AM IN NO WAY RESPONSIBLE FOR THE MISUSE OF THESE INSTRUCTIONS NO THE TOOL ITSELF
 This tool was created by killbit follow me on twitter @josh2all (https://twitter.com/Josh2all).
-Feel free to use this not so awesome code, just give me credit for my work. Thank you.
+Please give me credit for my work. Thank you.
 
 Are you tired of having to test if you have access IP addresses within a long list of IP ranges pointing at an excel doc with one hand and your fping out file with the other?
 
