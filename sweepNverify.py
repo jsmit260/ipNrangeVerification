@@ -4,24 +4,6 @@ import sys
 import subprocess
 from pyfiglet import Figlet
 
-'''
-THIS IS VERSION 2 and includes the following upgrades:
-    1. Added fping scan: fping -a -q -g TARGET_RANGES
-    2. 
-
-USE ADVICE AT YOUR OWN RISK, I AM IN NO WAY RESPONSIBLE FOR THE MISUSE OF THESE INSTRUCTIONS NO THE TOOL ITSELF
-This tool was created by killbit follow me on twitter @josh2all (https://twitter.com/Josh2all).
-Feel free to use this not so awesome code, just give me credit for my work. Thank you.
-
-Are you tired of having to test if you have access IP addresses within a long list of IP ranges pointing at an excel doc with one hand and your fping out file with the other?
-
-ipNrangeVerication solves this problem simply:
-1. Create line seperated list of IP ranges 
-2. Run fping command> for each in $(cat targets.list);do fping -a -r 1 -g $each 2>/dev/null >> fping.out; done
-3. ./ipNrangeVerification.py [FILE_OF_RANGES] [FILE_OF_UPHOSTS_FROM_FPING.OUT]
-
-'''
-
 bannertext = Figlet(font='banner')
 print(bannertext.renderText('Pow Pow'))
 
