@@ -19,5 +19,3 @@ ipNrangeVerication solves this problem simply:
 2. ./sweepNverify.py [TARGET_RANGES_LIST_FILE]
 
 ![](pingsweep_run.png)
-
-https://twitter.com/Josh2all/status/1250513182289952768/photo/1
