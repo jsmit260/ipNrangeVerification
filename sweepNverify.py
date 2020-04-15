@@ -2,6 +2,7 @@
 import ipaddress
 import sys
 import subprocess
+from pyfiglet import Figlet
 
 '''
 THIS IS VERSION 2 and includes the following upgrades:
@@ -21,8 +22,14 @@ ipNrangeVerication solves this problem simply:
 
 '''
 
-#if len(sys.argv[1])==0 or len(sys.argv[2])==0 :
-#    print("Usage:> ./ipNrangeVerification.py [FILE_OF_RANGES] [FILE_OF_UPHOSTS_FROM_FPING.OUT]")
+bannertext = Figlet(font='banner')
+print(bannertext.renderText('Pow Pow'))
+
+bannertext2 = Figlet(font='epic')
+print(bannertext2.renderText('Bang Boogi'))
+print("By: Joshua Smith (aka: killbit)\n\n")
+
+
 if len(sys.argv)==1:
     print('USAGE: ./sweeNverify.py [TARGET_RANGE_LIST_FILE_NAME]\n\n\n')
 
