@@ -1,3 +1,7 @@
+USE TOOL AT YOUR OWN RISK, I AM IN NO WAY RESPONSIBLE FOR THE MISUSE OF THESE INSTRUCTIONS NOR THE TOOL ITSELF (which leverages FPING -- https://github.com/shahifaqeer/fping).
+
+These two tools were created by killbit follow me on twitter @josh2all (https://twitter.com/Josh2all).
+
 Make sure you are hitting live hosts in each range you have been assigned.
 
 # ipNrangeVerification.py
