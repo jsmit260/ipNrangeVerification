@@ -5,7 +5,7 @@ Are you tired of having to test if you have access IP addresses within a long li
 
 ipNrangeVerication solves this problem simply:
 1. Create line seperated list of IP ranges 
-2. Run fping command> for each in $(cat targets.list);do fping -a -r 1 -g $each 2>/dev/null >> fping.out; done
+2. Run fping command> for each in $(cat targets.list);do fping -a -g $each 2>/dev/null >> fping.out; done
 3. ./ipNrangeVerification.py [FILE_OF_RANGES] [FILE_OF_UPHOSTS_FROM_FPING.OUT]
 
 -- OR --
