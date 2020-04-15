@@ -4,7 +4,9 @@ import sys
 import subprocess
 
 '''
-THIS IS VERSION 2 and includes the ping sweep done for you:
+THIS IS VERSION 2 and includes the following upgrades:
+    1. Added fping scan: fping -a -q -g TARGET_RANGES
+    2. 
 
 USE ADVICE AT YOUR OWN RISK, I AM IN NO WAY RESPONSIBLE FOR THE MISUSE OF THESE INSTRUCTIONS NO THE TOOL ITSELF
 This tool was created by killbit follow me on twitter @josh2all (https://twitter.com/Josh2all).
@@ -12,14 +14,17 @@ Feel free to use this not so awesome code, just give me credit for my work. Than
 
 Are you tired of having to test if you have access IP addresses within a long list of IP ranges pointing at an excel doc with one hand and your fping out file with the other?
 
-USAGE:
+ipNrangeVerication solves this problem simply:
 1. Create line seperated list of IP ranges 
-2. ./sweepNverify.py [YOUR_LIST_FILE]
+2. Run fping command> for each in $(cat targets.list);do fping -a -r 1 -g $each 2>/dev/null >> fping.out; done
+3. ./ipNrangeVerification.py [FILE_OF_RANGES] [FILE_OF_UPHOSTS_FROM_FPING.OUT]
 
 '''
 
 #if len(sys.argv[1])==0 or len(sys.argv[2])==0 :
 #    print("Usage:> ./ipNrangeVerification.py [FILE_OF_RANGES] [FILE_OF_UPHOSTS_FROM_FPING.OUT]")
+if len(sys.argv)==1:
+    print('USAGE: ./sweeNverify.py [TARGET_RANGE_LIST_FILE_NAME]\n\n\n')
 
 converted_list_of_ranges=[]
 listOfUpHosts=[]
@@ -29,8 +34,11 @@ converted_list_of_uphosts=[]
 def convertRangeListFile():
     f = open(sys.argv[1], 'r')
     for line in f:
-        unalteredRanges.append(line.rstrip("\n"))
-        converted_list_of_ranges.append(ipaddress.ip_network(line.rstrip("\n")))
+        if line == '' or line == ' ':
+            skip
+        else:
+            unalteredRanges.append(line.rstrip("\n"))
+            converted_list_of_ranges.append(ipaddress.ip_network(line.rstrip("\n")))
     f.close()
 
 def convertUpHostsList(uphosts):
@@ -39,8 +47,14 @@ def convertUpHostsList(uphosts):
 
 countingdown=len(unalteredRanges)
 def pingsweep(ip_range):
-    print("Pingsweeping --> ",ip_range) 
-    scan = subprocess.run(['/usr/bin/fping','-a','-q','-g',ip_range],text=True,capture_output=True)
+    scan = subprocess.run(['/usr/bin/fping','-a','-s','-q','-g',ip_range],text=True,capture_output=True)
+    stats = scan.stderr
+    statList=stats.split()
+    shortStatList=statList[0:6]
+    subShortList1=shortStatList[::2]
+    subShortList2=shortStatList[1::2]
+    correctStats=dict(zip(subShortList2, subShortList1))
+    print("PingSweeping --> ",ip_range,' ---->\t[','SCANNED:', correctStats['targets'],'\tALIVE:',correctStats['alive'],'\tUnreachable:',correctStats['unreachable'],']')
     s = scan.stdout
     uphosts=''.join(s).split()
     return(uphosts)
@@ -90,7 +104,8 @@ for eachYes in dedup_masterListYes:
 
 outfile = open('josh-done-did-yo-pingsweep.out','w+')
 for each in up_hosts:
-    outfile.write("%s\n" % each)
+    it = each.rstrip('\n')
+    outfile.write("%s\n" % it)
 
 outfile.close()
-print("Outfile named, 'josh-done-did-yo-pingsweep.out' created in same directory as script was run!")
+print("OUTFILE: josh-done-did-yo-pingsweep.out")
