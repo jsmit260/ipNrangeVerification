@@ -1,7 +1,7 @@
 Make sure you are hitting live hosts in each range you have been assigned.
 
 # ipNrangeVerification.py
-Are you tired of having to test if you have access IP addresses within a long list of IP ranges pointing at an excel doc with one hand and your fping out file with the other?
+Are you tired of having to test if you have access to at least one IP address within a long list of IP ranges pointing at an excel doc with one hand and your fping or nmap scan out file with the other?
 
 ipNrangeVerication solves this problem simply:
 1. Create line seperated list of IP ranges 
