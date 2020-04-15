@@ -27,7 +27,7 @@ print(bannertext.renderText('Pow Pow'))
 
 bannertext2 = Figlet(font='epic')
 print(bannertext2.renderText('Bang Boogi'))
-print("By: Joshua Smith (aka: killbit)\n\n")
+print("By: Joshua Smith (aka: killbit -- https://twitter.com/Josh2all)\n\n")
 
 
 if len(sys.argv)==1:
