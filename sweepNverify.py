@@ -5,11 +5,8 @@ import subprocess
 from pyfiglet import Figlet
 
 bannertext = Figlet(font='banner')
-print(bannertext.renderText('Pow Pow'))
-
-bannertext2 = Figlet(font='epic')
-print(bannertext2.renderText('Bang Boogi'))
-print("By: Joshua Smith (aka: killbit -- https://twitter.com/Josh2all)\n\n")
+print(bannertext.renderText('SweepNVerify'))
+print("\nBy: Joshua Smith (aka: killbit -- https://twitter.com/Josh2all)\n\n")
 
 
 if len(sys.argv)==1:
