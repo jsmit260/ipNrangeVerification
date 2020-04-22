@@ -5,19 +5,12 @@ import sys
 import subprocess
 import nmap
 from pyfiglet import Figlet
-<<<<<<< HEAD
 from tabulate import tabulate
 import pandas as pd
 
 bannertext2 = Figlet(font='epic')
 print(bannertext2.renderText('PINGING'))
 print("By: Joshua Smith (aka: killbit -- https://twitter.com/Josh2all)\n\n")
-=======
-
-bannertext = Figlet(font='banner')
-print(bannertext.renderText('SweepNVerify'))
-print("\nBy: Joshua Smith (aka: killbit -- https://twitter.com/Josh2all)\n\n")
->>>>>>> 228a7bc997999c0ce98f5191b0df0f2166f98414
 
 
 if len(sys.argv)==1:
