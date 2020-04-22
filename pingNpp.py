@@ -46,7 +46,7 @@ def pingsweep(ip_range):
 
 def nmap_port_ping(ip_range):
     nm = nmap.PortScanner()
-    nm.scan(hosts=ip_range, arguments='-T5 -Pn -PS -PA --top-ports 100')
+    nm.scan(hosts=ip_range, arguments='-T5 -Pn -PE -PA --top-ports 100 --open')
     for host in nm.all_hosts():
         if 'tcp' in nm[host].all_protocols():
             full_probe_dict[host] = nm[host]
