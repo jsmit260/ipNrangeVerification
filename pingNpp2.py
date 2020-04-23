@@ -4,6 +4,8 @@ import ipaddress
 import nmap
 from pyfiglet import Figlet
 import sys
+import datetime
+import csv
 
 bannertext2 = Figlet(font='epic')
 print(bannertext2.renderText('PINGING'))
@@ -26,16 +28,19 @@ def nmap_port_ping(ip_ranges):
     nm = nmap.PortScanner()
     count = len(ip_ranges)
     while count > 0:
-        nm.scan(hosts=ip_ranges[count-1], arguments='-T5 -sP -PE -PA --top-ports 100')
+
+        nm.scan(hosts=ip_ranges[count-1], arguments='-T5 -PA -PS --top-ports 100')
         print('PINGED\t-->\t', ip_ranges[count-1], '-->\t\tReachable Endpoints:\t',len(nm.all_hosts()))
         outfile = open('josh-done-did-yo-pingz.log', 'a+')
-        outfile.write("Successfully ICMP Pinged Hosts in %s:\n%s\nSuccessfully Port-Pinged:\n%s\n" % (ip_ranges[count-1],nm.all_hosts(),nm.csv()))
+#        outfile.write("----------------\nLog Written at %s\n----------------\nSuccessfully ICMP Pinged Hosts in %s:\n%s\n\nSuccessfully Port-Pinged:\n%s\n" % (datetime.datetime.now(),ip_ranges[count-1],nm.all_hosts(),nm.csv()))
+        outfile.write(nm.csv())
         count = count-1
         host_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
         for eachHost, eachState in host_list:
             if eachState == 'up':
                 up_hosts.append(eachHost)
     outfile.close()
+
     return host_list
 
 def convertRangeListFile():
@@ -83,4 +88,13 @@ print("\n[---The following ranges contained SUCCESSFULLY reached hosts---]\n")
 for eachYes in set(masterListYes):
     print(eachYes, "\n\n")
 
+
+print("PROOF OF RESULTS")
+with open('josh-done-did-yo-pingz.log', newline='') as f:
+    reader = csv.reader(f, delimiter=';', quoting=csv.QUOTE_NONE)
+    for row in reader:
+        if row[0] == 'host':
+            pass
+        else:
+            print(row[0], '\t', row[4], '\t', row[6])
 print("Detailed Log File Generated >> josh-done-did-yo-pingz.log")
